@@ -5,6 +5,14 @@
 //  No Copyright.
 //
 
+extension String {
+    func objects<T: Codable>() -> [T]? {
+        guard let data = self.data(using: .utf8) else { return nil }
+        guard let objects = try? JSONDecoder().decode([T].self, from: data) else { return nil }
+        return objects
+    }
+}
+
 extension Encodable {
     var jsonString: String {
         guard let jsonData = try? JSONEncoder().encode(self) else { return "" }
