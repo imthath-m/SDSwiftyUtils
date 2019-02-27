@@ -7,7 +7,7 @@
 
 extension Date {
     
-    static func get(from string: String?, with formatter: DateFormatter, in timezone: TimeZone? = nil) -> Date? {
+    public static func get(from string: String?, with formatter: DateFormatter, in timezone: TimeZone? = nil) -> Date? {
         
         guard let dateString = string else {
             return nil
@@ -20,7 +20,7 @@ extension Date {
         return formatter.date(from: dateString)
     }
     
-    func string(with formatter: DateFormatter, in timezone: TimeZone? = nil) -> String {
+    public func string(with formatter: DateFormatter, in timezone: TimeZone? = nil) -> String {
         
         if let timeZone = timezone {
             formatter.timezone = timeZone
@@ -33,23 +33,23 @@ extension Date {
 
 extension Date {
     
-    var startOfWeek: Date {
+    public var startOfWeek: Date {
         return Calendar.current.date(from: Calendar.current.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))!
     }
     
-    var endOfWeek: Date {
+    public var endOfWeek: Date {
         return Calendar.current.date(byAdding: .day, value: 6, to: self.startOfWeek)!
     }
     
-    var dayOfWeek: Int {
+    public var dayOfWeek: Int {
         return Calendar.current.component(.weekday, from: self)-1
     }
     
-    var startOfMonth: Date {
+    public var startOfMonth: Date {
         return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: self))!
     }
     
-    var endOfMonth: Date {
+    public var endOfMonth: Date {
         let nextMonth = Calendar.current.date(byAdding: .month, value: 1, to: self.startOfMonth)!
         return Calendar.current.date(byAdding: .day, value: -1, to: nextMonth)!
     }
