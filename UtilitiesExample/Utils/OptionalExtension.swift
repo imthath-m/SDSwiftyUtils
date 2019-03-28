@@ -2,19 +2,19 @@
 //  OptionalExtension.swift
 //
 //  Created by Imthath M on 17/12/18.
-//  No Copyright.
+//  Copyright © 2019 Sky Dev. All rights reserved.
 //
 
 import Foundation
 
 extension Optional {
-    
-    public func safeUnwrap(to object: inout Wrapped?){
+
+    public func safeUnwrap(to object: inout Wrapped?) {
         if let strongSelf = self {
             object = strongSelf
         }
     }
-    
+
     public func safeUnwrap(to object: inout Wrapped) {
         if let strongSelf = self {
             object = strongSelf
