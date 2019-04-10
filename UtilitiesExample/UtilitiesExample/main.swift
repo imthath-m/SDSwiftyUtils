@@ -9,3 +9,6 @@
 import Foundation
 
 print("Hello, World!")
+
+let innova = Vehicle(brand: "Toyata", model: "TI-1025", seatingCapacity: 7)
+print(innova.dictionary)
