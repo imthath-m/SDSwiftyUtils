@@ -8,7 +8,8 @@
 
 import Foundation
 
-print("Hello, World!")
+//let innova = Vehicle(brand: "Toyata", model: "TI-1025", seatingCapacity: 7)
+//print(innova.dictionary)
 
-let innova = Vehicle(brand: "Toyata", model: "TI-1025", seatingCapacity: 7)
-print(innova.dictionary)
+//let numbers = [1, 2, 3, 4, 5, 6]
+//print(numbers.repeatingList(of: 8))

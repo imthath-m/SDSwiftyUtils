@@ -18,6 +18,9 @@ Pod::Spec.new do |spec|
   spec.swift_version = "4.2"
   spec.osx.deployment_target = "10.12"
   spec.ios.deployment_target = "9.0"
+  spec.watchos.deployment_target = "2.0"
+  spec.tvos.deployment_target = "9.0"
+  
   spec.source_files  = "UtilitiesExample/Utils/*.swift"
 
 

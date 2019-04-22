@@ -24,7 +24,7 @@ public class FileIO {
         do {
             encoder.outputFormatting = .prettyPrinted
             let text = String(data: try encoder.encode(object), encoding: .utf8)!
-            try text.write(to: getUrl(of: name), atomically: true, encoding: .utf8)
+            try text.write(to: getUrl(of: name)!, atomically: true, encoding: .utf8)
             print("Saved \(name)")
         } catch let error as NSError {
             print("unable to save: \(error.description)")
@@ -34,9 +34,12 @@ public class FileIO {
     public static func readData(from name: String) -> Data? {
         var result: Data?
         do {
-            result = Data(try String(contentsOf: getUrl(of: name)).utf8)
+            if let url = getUrl(of: name) {
+                let string = try String(contentsOf: url)
+                result = Data(string.utf8)
+            }
         } catch let error as NSError {
-            print("unable to read from file at \(getUrl(of: name)) \nError\(error.description)")
+            print("unable to read from file at \(getUrl(of: name)?.absoluteString ?? name) \nError\(error.description)")
         }
         return result
     }
@@ -44,14 +47,16 @@ public class FileIO {
     public static func readText(from name: String) -> String? {
         var result: String?
         do {
-            result = try String(contentsOf: getUrl(of: name))
+            if let url = getUrl(of: name) {
+                result = try String(contentsOf: url)
+            }
         } catch let error as NSError {
-            print("unable to read from file at \(getUrl(of: name)) \nError\(error.description)")
+            print("unable to read from file at \(getUrl(of: name)?.absoluteString ?? name) \nError\(error.description)")
         }
         return result
     }
 
-    public static func getUrl(of name: String) -> URL {
+    public static func getUrl(of name: String) -> URL? {
         var fileUrl: URL?
         do {
             let docDirectoryUrl = try FileManager.default.url(for: .documentDirectory,
@@ -60,6 +65,6 @@ public class FileIO {
         } catch let error as NSError {
             print("unable to get file url: \(error.description)")
         }
-        return fileUrl!
+        return fileUrl
     }
 }
