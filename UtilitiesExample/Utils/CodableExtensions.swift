@@ -7,8 +7,8 @@
 
 import Foundation
 
-internal let encoder = JSONEncoder()
-internal let decoder = JSONDecoder()
+private let encoder = JSONEncoder()
+private let decoder = JSONDecoder()
 
 extension Encodable {
     public var jsonString: String? {

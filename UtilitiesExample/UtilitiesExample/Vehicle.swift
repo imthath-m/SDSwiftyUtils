@@ -10,6 +10,6 @@ import Foundation
 
 struct Vehicle: Codable {
     let brand: String
-    let model: String
+    var model: String?
     let seatingCapacity: Int
 }

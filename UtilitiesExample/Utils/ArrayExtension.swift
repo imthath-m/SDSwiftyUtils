@@ -104,3 +104,104 @@ extension Array {
         }
     }
 }
+
+extension Sequence {
+
+    /// performs the given operation using DisptachQueue().async
+    /// and hence will return before the entire operation is complete
+    @inlinable public func parallelLoop(_ body: @escaping (Self.Element) -> Void) {
+        let dispatchQueue = DispatchQueue(label: "parallel", attributes: .concurrent)
+
+        for element in self {
+            dispatchQueue.async {
+                body(element)
+            }
+        }
+
+    }
+
+    /// performs the given transformation using DisptachQueue().async
+    /// and hence will return before the entire operation is complete
+    @inlinable public func parallelMap<Result>(_ transform: @escaping (Self.Element) -> Result) -> [Result] {
+        let dispatchQueue = DispatchQueue(label: "parallel", attributes: .concurrent)
+
+        var result = [Result]()
+
+        for element in self {
+            dispatchQueue.async {
+                result.append(transform(element))
+            }
+        }
+
+        return result
+    }
+}
+
+extension Array {
+
+    /// performs the given operation using DispatchQueue.concurrent perfom
+    @inlinable public func concurrentLoop(_ body: @escaping (Element) -> Void) {
+        DispatchQueue.concurrentPerform(iterations: self.count) { index in
+            body(self[index])
+        }
+    }
+
+    /// performs the given transformation using DispatchQueue.concurrent perfom
+    @inlinable public func concurrentMap<Result>(_ transform: @escaping (Element) -> Result) -> [Result] {
+
+        var result = [Result]()
+
+        DispatchQueue.concurrentPerform(iterations: self.count) { index in
+            result.append(transform(self[index]))
+        }
+
+        return result
+    }
+}
+
+extension Array where Element: Hashable {
+
+    /// returns a dictionary with each unique element as key and the count it is present in the array as value
+    func uniqueCount() -> [Element: Int] {
+
+        var result = [Element: Int]()
+
+        for element in self {
+            if let count = result[element] {
+                result[element] = count + 1
+            } else {
+                result[element] = 1
+            }
+        }
+
+        return result
+    }
+}
+
+extension Array where Element: Equatable {
+
+    /// returns start index and end index of the matching sub array
+    /// returns (0, 0) if no match is found
+    func findMatchingSubArray(like another: [Element]) -> (Int, Int) {
+
+        for (index, element) in self.enumerated() {
+            var nextElement = element
+
+            for (ind, elem) in another.enumerated() {
+                if elem != nextElement { break }
+                if elem == another.last { return (index - another.count + 1, index) }
+                nextElement = self[index + ind + 1]
+            }
+        }
+
+        return (0, 0)
+    }
+}
+
+extension Array {
+    mutating func appendOptional(_ newElement: Element?) {
+        if let element = newElement {
+            self.append(element)
+        }
+    }
+}
