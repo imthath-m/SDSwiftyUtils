@@ -10,6 +10,11 @@ import Foundation
 
 extension String {
 
+    /// enables subscripting string with an int to get the character at the index
+    subscript(position: Int) -> Element {
+        return self[self.index(startIndex, offsetBy: position)]
+    }
+
     /// decode and return codable types 
     public func objects<T: Codable>() -> [T]? {
         guard let data = self.data(using: .utf8) else { return nil }

@@ -12,7 +12,7 @@ extension UUID {
     var short: String {
         return String(self.uuidString.suffix(6))
     }
-    
+
     var dateShort: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "ddMMyy"

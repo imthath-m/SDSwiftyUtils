@@ -36,12 +36,6 @@ func find(word: String, in sentence: String) -> Int {
     return 0
 }
 
-extension String {
-    subscript(position: Int) -> Element {
-        return self[self.index(startIndex, offsetBy: position)]
-    }
-}
-
 let sentence = "this is the test sentence"
 let word = "sent"
 print(find(word: word, in: sentence))
