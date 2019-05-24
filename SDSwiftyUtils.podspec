@@ -3,7 +3,7 @@
 Pod::Spec.new do |spec|
  
   spec.name         = "SDSwiftyUtils"
-  spec.version      = "0.1.2"
+  spec.version      = "0.1.3"
   spec.summary      = "Commonly used utilities, extensions and custom protocols for Swift."
 
   spec.description  = <<-DESC

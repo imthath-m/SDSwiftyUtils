@@ -11,10 +11,23 @@ private let encoder = JSONEncoder()
 private let decoder = JSONDecoder()
 
 public class FileIO {
-    public static func getOjbectFromFile<T: Codable>(named name: String) -> T? {
+
+    public static func getOjbectsFromFile<T: Codable>(named name: String, withType type: String) -> [T] {
+        var objects = [T]()
+        do {
+            if let data = readData(fromFile: name, ofType: type) {
+                objects = try decoder.decode([T].self, from: data)
+            }
+        } catch let error as NSError {
+            print("unable to decode objects from text file: \(error.description)")
+        }
+        return objects
+    }
+
+    public static func getOjbectFromFile<T: Codable>(named name: String, withType type: String) -> T? {
         var object: T?
         do {
-            if let data = readData(from: name) {
+            if let data = readData(fromFile: name, ofType: type) {
                 object = try decoder.decode(T.self, from: data)
             }
         } catch let error as NSError {
@@ -33,13 +46,12 @@ public class FileIO {
             print("unable to save: \(error.description)")
         }
     }
-
-    public static func readData(from name: String) -> Data? {
+    
+    public static func readData(fromFile name: String, ofType type: String) -> Data? {
         var result: Data?
         do {
-            if let url = getUrlOf(fileName: name) {
-                let string = try String(contentsOf: url)
-                result = Data(string.utf8)
+            if let url = getUrlOf(fileName: name, fileType: type) {
+                result = try Data(contentsOf: url)
             }
         } catch let error as NSError {
             print("unable to read from file at \(getUrlOf(fileName: name)?.absoluteString ?? name)")

@@ -24,22 +24,28 @@ import Foundation
 //    print("\(key) is present \(value) times")
 //}
 
-func find(word: String, in sentence: String) -> Int {
-    for (index, character) in sentence.enumerated() {
-        var nextChar = character
-        for (ind, char) in word.enumerated() {
-            if char != nextChar { break }
-            if char == word.last { return index }
-            nextChar = sentence[index + ind + 1]
-        }
-    }
-    return 0
-}
+//func find(word: String, in sentence: String) -> Int {
+//    for (index, character) in sentence.enumerated() {
+//        var nextChar = character
+//        for (ind, char) in word.enumerated() {
+//            if char != nextChar { break }
+//            if char == word.last { return index }
+//            nextChar = sentence[index + ind + 1]
+//        }
+//    }
+//    return 0
+//}
+//
+//let sentence = "this is the test sentence"
+//let word = "sent"
+//print(find(word: word, in: sentence))
+//
+//let sentenceArray: [Character] = Array(sentence)
+//let wordArray: [Character] = Array(word)
+//print(sentenceArray.findMatchingSubArray(like: wordArray))
 
-let sentence = "this is the test sentence"
-let word = "sent"
-print(find(word: word, in: sentence))
+//let avenger: Vehicle? = FileIO.getOjbectFromFile(named: "avenger", withType: "json")
+//print(avenger?.jsonString)
 
-let sentenceArray: [Character] = Array(sentence)
-let wordArray: [Character] = Array(word)
-print(sentenceArray.findMatchingSubArray(like: wordArray))
+//let cars: [Vehicle] = FileIO.getOjbectsFromFile(named: "car", withType: "json")
+//cars.forEach { print($0.jsonString!) }
