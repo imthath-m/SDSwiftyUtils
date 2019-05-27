@@ -11,7 +11,7 @@ import Foundation
 extension String {
 
     /// enables subscripting string with an int to get the character at the index
-    subscript(position: Int) -> Element {
+    public subscript(position: Int) -> Element {
         return self[self.index(startIndex, offsetBy: position)]
     }
 
@@ -22,22 +22,9 @@ extension String {
         return objects
     }
 
-    func getTimeIntervalSince1970(with dateFormatter: DateFormatter) -> TimeInterval? {
+    public func getTimeIntervalSince1970(with dateFormatter: DateFormatter) -> TimeInterval? {
         guard let date = Date.get(from: self, with: dateFormatter) else { return nil }
         return date.timeIntervalSince1970
     }
-
-    /// returns start index and end index of the matching string
-    /// returns (0, 0) if no match is found
-    func find(in another: String) -> (Int, Int) {
-        for (index, character) in another.enumerated() {
-            var nextChar = character
-            for (ind, char) in self.enumerated() {
-                if char != nextChar { break }
-                if char == self.last { return (index - another.count + 1, index) }
-                nextChar = another[index + ind + 1]
-            }
-        }
-        return (0, 0)
-    }
+    
 }

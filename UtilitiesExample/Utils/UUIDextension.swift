@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension UUID {
+public extension UUID {
     var short: String {
         return String(self.uuidString.suffix(6))
     }

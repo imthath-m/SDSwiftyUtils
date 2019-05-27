@@ -46,7 +46,7 @@ public class FileIO {
             print("unable to save: \(error.description)")
         }
     }
-    
+
     public static func readData(fromFile name: String, ofType type: String) -> Data? {
         var result: Data?
         do {

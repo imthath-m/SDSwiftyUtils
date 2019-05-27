@@ -35,14 +35,10 @@ import Foundation
 //    }
 //    return 0
 //}
-//
-//let sentence = "this is the test sentence"
-//let word = "sent"
-//print(find(word: word, in: sentence))
-//
-//let sentenceArray: [Character] = Array(sentence)
-//let wordArray: [Character] = Array(word)
-//print(sentenceArray.findMatchingSubArray(like: wordArray))
+
+//let sentence: [Character] = Array("this is the test sentence")
+//let word: [Character] = Array("enot")
+//print(sentence.findMatch(like: word))
 
 //let avenger: Vehicle? = FileIO.getOjbectFromFile(named: "avenger", withType: "json")
 //print(avenger?.jsonString)

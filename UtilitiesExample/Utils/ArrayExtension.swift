@@ -162,7 +162,7 @@ extension Array {
 extension Array where Element: Hashable {
 
     /// returns a dictionary with each unique element as key and the count it is present in the array as value
-    func uniqueCount() -> [Element: Int] {
+    public func uniqueCount() -> [Element: Int] {
 
         var result = [Element: Int]()
 
@@ -181,25 +181,33 @@ extension Array where Element: Hashable {
 extension Array where Element: Equatable {
 
     /// returns start index and end index of the matching sub array
-    /// returns (0, 0) if no match is found
-    func findMatchingSubArray(like another: [Element]) -> (Int, Int) {
+    public func findMatch(like another: [Element]) -> (Int, Int)? {
 
+        var count: Int
         for (index, element) in self.enumerated() {
             var nextElement = element
+            count = 0
 
             for (ind, elem) in another.enumerated() {
                 if elem != nextElement { break }
-                if elem == another.last { return (index - another.count + 1, index) }
+                count += 1
+
+                if count == another.count {
+                    return (index, index + another.count - 1)
+                }
+
+                if index == self.count - 1 { return nil }
+
                 nextElement = self[index + ind + 1]
             }
         }
 
-        return (0, 0)
+        return nil
     }
 }
 
 extension Array {
-    mutating func appendOptional(_ newElement: Element?) {
+    mutating public func appendOptional(_ newElement: Element?) {
         if let element = newElement {
             self.append(element)
         }
