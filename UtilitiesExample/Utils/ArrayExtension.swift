@@ -207,6 +207,16 @@ extension Array where Element: Equatable {
 }
 
 extension Array {
+    
+    /// returns the first element which satisfies the given condition
+    public func filterFirst(_ condition: (Element) throws -> Bool) rethrows -> Element? {
+        for element in self where try condition(element) {
+            return element
+        }
+        
+        return nil
+    }
+    
     mutating public func appendOptional(_ newElement: Element?) {
         if let element = newElement {
             self.append(element)
