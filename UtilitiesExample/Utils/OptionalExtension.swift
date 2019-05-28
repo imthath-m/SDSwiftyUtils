@@ -2,7 +2,7 @@
 //  OptionalExtension.swift
 //
 //  Created by Imthath M on 17/12/18.
-//  Copyright © 2019 Sky Dev. All rights reserved.
+//  No Copyright.
 //
 
 import Foundation

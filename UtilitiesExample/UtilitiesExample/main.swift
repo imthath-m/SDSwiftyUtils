@@ -3,7 +3,7 @@
 //  UtilitiesExample
 //
 //  Created by Imthath M on 28/03/19.
-//  Copyright © 2019 Sky Dev. All rights reserved.
+//  No Copyright.
 //
 
 import Foundation

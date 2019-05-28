@@ -1,9 +1,8 @@
 //
 //  UUIDextension.swift
-//  UtilitiesExample
 //
 //  Created by Imthath M on 23/05/19.
-//  Copyright © 2019 Sky Dev. All rights reserved.
+//  No Copyright.
 //
 
 import Foundation

@@ -2,7 +2,7 @@
 //  FileIO.swift
 //
 //  Created by Imthath M on 28/11/18.
-//  Copyright © 2019 Sky Dev. All rights reserved.
+//  No Copyright.
 //
 
 import Foundation

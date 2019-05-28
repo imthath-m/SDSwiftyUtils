@@ -2,7 +2,7 @@
 //  CodableExtensions.swift
 //
 //  Created by Imthath M on 21/02/19.
-//  Copyright © 2019 Sky Dev. All rights reserved.
+//  No Copyright.
 //
 
 import Foundation

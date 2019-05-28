@@ -1,9 +1,8 @@
 //
 //  ArrayExtension.swift
-//  UtilitiesExample
 //
 //  Created by Imthath M on 15/04/19.
-//  Copyright © 2019 mohammed-7418. All rights reserved.
+//  No Copyright.
 //
 
 import Foundation
