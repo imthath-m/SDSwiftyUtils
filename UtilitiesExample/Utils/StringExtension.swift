@@ -25,5 +25,24 @@ extension String {
         guard let date = Date.get(from: self, with: dateFormatter) else { return nil }
         return date.timeIntervalSince1970
     }
-    
+
+    public var isEmail: Bool {
+        let emailRegEx = "(?=.{6,64}$)[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,56}"
+        return NSPredicate(format: "SELF MATCHES %@", emailRegEx).evaluate(with: self)
+    }
+
+    public var isMobileNumber: Bool {
+        let mobileRegEx = "[0-9]{10}"
+        let input = self.replacingOccurrences(of: " ", with: "")
+                    .replacingOccurrences(of: "-", with: "")
+                    .replacingOccurrences(of: "/", with: "")
+        return NSPredicate(format: "SELF MATCHES %@", mobileRegEx).evaluate(with: input)
+    }
+
+}
+
+extension Int {
+    var isMobile: Bool {
+        return self > 1000000000 && self < 10000000000
+    }
 }
