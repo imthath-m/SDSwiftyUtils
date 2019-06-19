@@ -9,12 +9,12 @@ import Foundation
 
 extension String {
 
-    /// enables subscripting string with an int to get the character at the index
+    /// Enables subscripting string with an int to get the character at the index
     public subscript(position: Int) -> Element {
         return self[self.index(startIndex, offsetBy: position)]
     }
 
-    /// decode and return codable types 
+    /// Decodes and returns codable types
     public func objects<T: Codable>() -> [T]? {
         guard let data = self.data(using: .utf8) else { return nil }
         guard let objects = try? JSONDecoder().decode([T].self, from: data) else { return nil }
@@ -39,10 +39,21 @@ extension String {
         return NSPredicate(format: "SELF MATCHES %@", mobileRegEx).evaluate(with: input)
     }
     
+    public var dictionary: [String: Any]? {
+        if let data = self.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
+    }
+    
 }
 
-extension Int {
-    var isMobile: Bool {
-        return self > 1000000000 && self < 10000000000
+extension BinaryInteger {
+    public var isMobile: Bool {
+        return String(self.magnitude).count == 10
     }
 }
