@@ -42,23 +42,23 @@ extension Decodable {
     }
 }
 
-protocol Imitable: Codable {
+public protocol Imitable: Codable {
     var copy: Self? { get }
 }
 
 extension Imitable {
-    var copy: Self? {
+    public var copy: Self? {
         guard let data = try? encoder.encode(self) else { return nil }
         return try? decoder.decode(Self.self, from: data)
     }
 }
 
-protocol Distinguishable: Codable {
+public protocol Distinguishable: Codable {
     func isDistinct(from other: Self) -> Bool
 }
 
 extension Distinguishable {
-    func isDistinct(from other: Self) -> Bool {
+    public func isDistinct(from other: Self) -> Bool {
         return self.jsonData != other.jsonData
     }
 }

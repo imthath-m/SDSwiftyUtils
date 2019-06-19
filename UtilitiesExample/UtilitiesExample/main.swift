@@ -39,9 +39,18 @@ import Foundation
 //let sentence: [Character] = Array("this is the test sentence")
 //let word: [Character] = Array("enot")
 //print(sentence.findMatch(like: word))
-
 //let avenger: Vehicle? = FileIO.getOjbectFromFile(named: "avenger", withType: "json")
 //print(avenger?.jsonString)
-
 //let cars: [Vehicle] = FileIO.getOjbectsFromFile(named: "car", withType: "json")
 //cars.forEach { print($0.jsonString!) }
+
+//let email = "imthath.m@gmail.com"
+//print(email.isEmail)
+//let mobile = " 537-028- 03 13"
+//print(mobile.isMobileNumber)
+//let phone = 9894022092
+//print(phone.isMobile)
+
+//var animals = ["cat", "mouse", "dog", "frog"]
+//animals.remove("fr og")
+//print(animals)
