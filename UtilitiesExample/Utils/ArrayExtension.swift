@@ -231,8 +231,9 @@ extension Array {
         return nil
     }
     
-    /// Removes and returns all the elements which satifsy the given predicate
-    @inlinable mutating public func removeAll(where shouldBeRemoved: (Element) throws -> Bool) rethrows -> [Element] {
+    /// Removes and returns the elements which satifsy the given predicate
+    @inlinable
+    mutating public func removeAndReturn(where shouldBeRemoved: (Element) throws -> Bool) rethrows -> [Element] {
         var indices = [Int]()
         var result = [Element]()
         
@@ -260,5 +261,16 @@ extension Array {
         if let element = newElement {
             self.append(element)
         }
+    }
+    
+    /// Returns the indices of elements which satisfy the given condition
+    public func indices(where condition: (Element) throws -> Bool) rethrows -> [Int] {
+        var result = [Int]()
+        
+        for index in 0..<self.count where try condition(self[index]) {
+            result.append(index)
+        }
+        
+        return result
     }
 }

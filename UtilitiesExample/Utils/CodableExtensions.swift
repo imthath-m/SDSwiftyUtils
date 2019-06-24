@@ -23,9 +23,10 @@ extension Encodable {
         return try? encoder.encode(self)
     }
 
-    var dictionary: [String: Any] {
-        return (try? JSONSerialization.jsonObject(with: encoder.encode(self), options: .allowFragments))
-                .flatMap { $0 as? [String: Any] } ?? [String: Any]()
+    public var dictionary: [String: Any]? {
+        return (try? JSONSerialization.jsonObject(with: encoder.encode(self),
+                                                  options: .allowFragments))
+                .flatMap { $0 as? [String: Any] }
     }
 }
 

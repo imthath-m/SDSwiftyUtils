@@ -54,3 +54,5 @@ import Foundation
 //var animals = ["cat", "mouse", "dog", "frog"]
 //animals.remove("fr og")
 //print(animals)
+//print(animals.removeAndReturn(where: {$0.count == 3}))
+//print(animals.indices(where: {$0.count == 3}))
