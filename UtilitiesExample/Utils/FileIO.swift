@@ -11,77 +11,93 @@ private let encoder = JSONEncoder()
 private let decoder = JSONDecoder()
 
 public class FileIO {
+    
+    let logger: LoggerProtocol
+    let shared = FileIO(logger: Console.shared)
+    
+    public init(logger: LoggerProtocol) {
+        self.logger = logger
+    }
 
-    public static func getOjbectsFromFile<T: Codable>(named name: String, withType type: String) -> [T] {
+    public func getOjbectsFromFile<T: Codable>(named name: String, withType type: FileType) -> [T] {
         var objects = [T]()
         do {
-            if let data = readData(fromFile: name, ofType: type) {
+            if let data = readData(from: name, type: type) {
                 objects = try decoder.decode([T].self, from: data)
             }
         } catch let error as NSError {
-            print("unable to decode objects from text file: \(error.description)")
+            logger.log("unable to decode objects from text file: \(error.description)")
         }
         return objects
     }
 
-    public static func getOjbectFromFile<T: Codable>(named name: String, withType type: String) -> T? {
+    public func getOjbectFromFile<T: Codable>(named name: String, withType type: FileType) -> T? {
         var object: T?
         do {
-            if let data = readData(fromFile: name, ofType: type) {
+            if let data = readData(from: name, type: type) {
                 object = try decoder.decode(T.self, from: data)
             }
         } catch let error as NSError {
-            print("unable to decode object from text file: \(error.description)")
+            logger.log("unable to decode object from text file: \(error.description)")
         }
         return object
     }
 
-    public static func save<T>(_ object: T, to name: String) where T: Codable {
+    public func save<T>(_ object: T, to name: String, as type: FileType = .text) where T: Codable {
         do {
             encoder.outputFormatting = .prettyPrinted
-            let text = String(data: try encoder.encode(object), encoding: .utf8)!
-            try text.write(to: getUrlOf(fileName: name)!, atomically: true, encoding: .utf8)
-            print("Saved \(name)")
+            
+            let url = try getUrl(of: name, type: type)
+            let data = try encoder.encode(object)
+            
+            switch type {
+            case .text:
+                if let text = String(data: data, encoding: .utf8) {
+                    try text.write(to: url, atomically: true, encoding: .utf8)
+                    logger.log("Saved text file \(name)")
+                }
+            case .json:
+                try data.write(to: url)
+                logger.log("Saved \(name).\(type.rawValue)")
+            }            
+            
         } catch let error as NSError {
-            print("unable to save: \(error.description)")
+            logger.log("unable to save: \(error.description)")
         }
     }
 
-    public static func readData(fromFile name: String, ofType type: String) -> Data? {
+    public func readData(from name: String, type: FileType) -> Data? {
         var result: Data?
         do {
-            if let url = getUrlOf(fileName: name, fileType: type) {
-                result = try Data(contentsOf: url)
-            }
+            let url = try getUrl(of: name, type: type)
+            result = try Data(contentsOf: url)
         } catch let error as NSError {
-            print("unable to read from file at \(getUrlOf(fileName: name)?.absoluteString ?? name)")
-            print("Error: \(error.description)")
+            logger.log("unable to read data of type \(type.rawValue) from file \(name)")
+            logger.log("Error: \(error.description)")
         }
         return result
     }
 
-    public static func readText(from name: String) -> String? {
+    public func readText(from name: String) -> String? {
         var result: String?
         do {
-            if let url = getUrlOf(fileName: name) {
-                result = try String(contentsOf: url)
-            }
+            let url = try getUrl(of: name)
+            result = try String(contentsOf: url)
         } catch let error as NSError {
-            print("unable to read from file at \(getUrlOf(fileName: name)?.absoluteString ?? name)")
-            print("Error: \(error.description)")
+            logger.log("unable to read text from file \(name)")
+            logger.log("Error: \(error.description)")
         }
         return result
     }
 
-    public static func getUrlOf(fileName name: String, fileType type: String = "txt") -> URL? {
-        var fileUrl: URL?
-        do {
-            let docDirectoryUrl = try FileManager.default.url(for: .documentDirectory,
-                                                              in: .userDomainMask, appropriateFor: nil, create: true)
-            fileUrl = docDirectoryUrl.appendingPathComponent(name).appendingPathExtension(type)
-        } catch let error as NSError {
-            print("unable to get file url: \(error.description)")
-        }
-        return fileUrl
+    public func getUrl(of name: String, type: FileType = .text) throws -> URL {
+        let docDirectoryUrl = try FileManager.default.url(for: .documentDirectory,
+                                                          in: .userDomainMask, appropriateFor: nil, create: true)
+        return docDirectoryUrl.appendingPathComponent(name).appendingPathExtension(type.rawValue)
     }
+}
+
+public enum FileType: String {
+    case text = "txt"
+    case json = "json"
 }

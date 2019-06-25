@@ -9,6 +9,12 @@
 import Foundation
 
 //let innova = Vehicle(brand: "Toyata", model: "TI-1025", seatingCapacity: 7)
+//FileIO.save(innova, to: "vehicle", as: .text)
+//FileIO.save(innova, to: "car", as: .json)
+//let text: Vehicle? = FileIO.getOjbectFromFile(named: "vehicle", withType: .text)
+//let json: Vehicle? = FileIO.getOjbectFromFile(named: "car", withType: .json)
+//print(text)
+//print(json)
 //print(innova.jsonString!)
 //
 //var swift = Vehicle(brand: "Maruti", model: nil, seatingCapacity: 5)

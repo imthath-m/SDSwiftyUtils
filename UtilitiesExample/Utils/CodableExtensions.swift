@@ -63,3 +63,9 @@ extension Distinguishable {
         return self.jsonData != other.jsonData
     }
 }
+
+extension Data {
+    public var dictionary: [String: Any]? {
+        return try? JSONSerialization.jsonObject(with: self, options: .mutableLeaves) as? [String: Any]
+    }
+}

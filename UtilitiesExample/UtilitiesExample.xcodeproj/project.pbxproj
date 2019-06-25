@@ -10,6 +10,7 @@
 		A81A1DA92264924A002FCAA5 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81A1DA82264924A002FCAA5 /* ArrayExtension.swift */; };
 		A82595552296B28E000F1BF4 /* UUIDextension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82595542296B28E000F1BF4 /* UUIDextension.swift */; };
 		A859C9A2225DCE8400CFFC71 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A859C9A1225DCE8400CFFC71 /* Vehicle.swift */; };
+		A8AEC2F722C1FE0D00970A35 /* LoggerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AEC2F622C1FE0D00970A35 /* LoggerProtocol.swift */; };
 		A8B6EA18224CCCF800A765A3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6EA17224CCCF800A765A3 /* main.swift */; };
 		A8B6EA23224CCD3D00A765A3 /* FileIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6EA1E224CCD3D00A765A3 /* FileIO.swift */; };
 		A8B6EA24224CCD3D00A765A3 /* OptionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B6EA1F224CCD3D00A765A3 /* OptionalExtension.swift */; };
@@ -34,6 +35,7 @@
 		A81A1DA82264924A002FCAA5 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		A82595542296B28E000F1BF4 /* UUIDextension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUIDextension.swift; sourceTree = "<group>"; };
 		A859C9A1225DCE8400CFFC71 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
+		A8AEC2F622C1FE0D00970A35 /* LoggerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerProtocol.swift; sourceTree = "<group>"; };
 		A8B6EA14224CCCF800A765A3 /* UtilitiesExample */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UtilitiesExample; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B6EA17224CCCF800A765A3 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		A8B6EA1E224CCD3D00A765A3 /* FileIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileIO.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				A8B6EA29224CD03E00A765A3 /* StringExtension.swift */,
 				A81A1DA82264924A002FCAA5 /* ArrayExtension.swift */,
 				A82595542296B28E000F1BF4 /* UUIDextension.swift */,
+				A8AEC2F622C1FE0D00970A35 /* LoggerProtocol.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -123,7 +126,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1010;
-				ORGANIZATIONNAME = "Sky Dev";
+				ORGANIZATIONNAME = "Zoho Corp";
 				TargetAttributes = {
 					A8B6EA13224CCCF800A765A3 = {
 						CreatedOnToolsVersion = 10.1;
@@ -175,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A82595552296B28E000F1BF4 /* UUIDextension.swift in Sources */,
+				A8AEC2F722C1FE0D00970A35 /* LoggerProtocol.swift in Sources */,
 				A859C9A2225DCE8400CFFC71 /* Vehicle.swift in Sources */,
 				A8B6EA2A224CD03E00A765A3 /* StringExtension.swift in Sources */,
 				A81A1DA92264924A002FCAA5 /* ArrayExtension.swift in Sources */,
